@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Mental Health and Wellbeing Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#f6f8f4;--fg:#1c2a1f;--card:#fff;--bd:#d5ddd0;--ac:#2f7d4f;--ok:#d9f2e0;--no:#fadbd8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141a16;--fg:#e6efe8;--card:#1e2721;--bd:#34423a;--ac:#5fbf86;--ok:#1d4a2e;--no:#5a2622}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif}
+main{max-width:680px;margin:0 auto;padding:20px 16px}
+h1{font-size:1.4rem;margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:12px}
+button,select{font:inherit;color:var(--fg)}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:10px 12px;margin:8px 0;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ac)}
+.opt.ok{background:var(--ok);border-color:var(--ac)}.opt.no{background:var(--no)}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:10px 18px;cursor:pointer}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bar{height:6px;background:var(--bd);border-radius:3px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+small{opacity:.75}
+</style>
+<style>
+:root{--bg:#eaf4ec;--fg:#16271b;--card:#fff;--bd:#d0e0d3;--ac:#2a7a4b;--ok:#d3f2db;--no:#fbd9d5;--mut:#5a6f5f;--sh:0 6px 20px rgba(30,90,55,.10)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1712;--fg:#e4efe7;--card:#18231c;--bd:#2c3d32;--ac:#5fc08a;--ok:#1b4a2f;--no:#5b2723;--mut:#9bb2a2;--sh:0 6px 20px rgba(0,0,0,.35)}}
+:root[data-theme=dark]{--bg:#0f1712;--fg:#e4efe7;--card:#18231c;--bd:#2c3d32;--ac:#5fc08a;--ok:#1b4a2f;--no:#5b2723;--mut:#9bb2a2;--sh:0 6px 20px rgba(0,0,0,.35)}
+body{background:radial-gradient(circle at 10% -10%,rgba(95,192,138,.25),transparent 45%),var(--bg);min-height:100vh;font-family:ui-rounded,"Segoe UI",system-ui,sans-serif}
+.top{max-width:680px;margin:0 auto;padding:18px 16px 0}
+.top h1{margin:0;font-size:1.7rem;letter-spacing:-.02em}
+.top p{margin:2px 0 12px;color:var(--mut)}
+.tg{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid var(--bd);background:var(--card);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:.85rem}
+.chip.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.card{border-radius:18px;box-shadow:var(--sh);padding:20px;animation:up .35s ease}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card h2{margin:0 0 12px;font-size:1.15rem;line-height:1.4}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;margin:12px 0 16px}
+.wk{border:1px solid var(--bd);background:var(--bg);border-radius:12px;padding:10px 6px;cursor:pointer;text-align:center;font-weight:600}
+.wk small{display:block;font-weight:400;color:var(--mut)}
+.wk.on{background:var(--ac);color:#fff;border-color:var(--ac)}.wk.on small{color:#e8fff0}
+.opt{display:flex;gap:12px;align-items:flex-start;border-radius:12px;padding:12px;transition:transform .12s,border-color .12s}
+.opt:hover:not(:disabled){transform:translateX(3px)}
+.opt:disabled{cursor:default;color:var(--fg);opacity:1}
+.opt b{flex:none;width:28px;height:28px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:.85rem}
+.opt.ok b{background:var(--ac);color:#fff}
+.opt.no{animation:sh .3s}
+@keyframes sh{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.bar{height:8px;border-radius:4px;margin-bottom:10px}.bar i{background:linear-gradient(90deg,var(--ac),#8fd694);transition:width .4s}
+.meta{display:flex;justify-content:space-between;color:var(--mut);font-size:.9rem;margin-bottom:10px}
+.btn{border-radius:12px;padding:12px 22px;font-weight:600;box-shadow:var(--sh)}
+.ghost{background:none;border:1px solid var(--bd);border-radius:12px;padding:11px 16px;cursor:pointer}
+.row{justify-content:space-between;margin-top:6px}
+.fb{margin-top:10px;font-weight:600;min-height:1.4em}
+.ring{width:140px;height:140px;border-radius:50%;display:grid;place-items:center;margin:8px auto 16px}
+.ring span{width:106px;height:106px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:1.6rem;font-weight:700}
+.rv{border-top:1px solid var(--bd);padding:10px 0;font-size:.92rem;text-align:left}
+.rv em{color:var(--ac);font-style:normal;font-weight:600}
+</style>
+<style>
+:root{--bg:#DADEBB;--g1:#FFDFE0;--g2:#DADEBB;--fg:#1d3c3b;--card:#ffffffcc;--bd:#9EAF8B;--ac:#2E6A68;--onac:#fff;--ok:#DADEBB;--no:#FEB8B6;--mut:#2E6A68}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1f1e;--g1:#0f1f1e;--g2:#173231;--fg:#FFDFE0;--card:#173231;--bd:#2E6A68;--ac:#9EAF8B;--onac:#0f1f1e;--ok:#2E6A68;--no:#7a3f40;--mut:#DADEBB}}
+:root[data-theme=dark]{--bg:#0f1f1e;--g1:#0f1f1e;--g2:#173231;--fg:#FFDFE0;--card:#173231;--bd:#2E6A68;--ac:#9EAF8B;--onac:#0f1f1e;--ok:#2E6A68;--no:#7a3f40;--mut:#DADEBB}
+body{background:linear-gradient(160deg,var(--g1),var(--g2)) fixed}
+.chip.on,.wk.on,.btn,.wk.on small,.opt.ok b{color:var(--onac)}
+.wk{background:var(--ok)}
+.bar{background:rgba(255,255,255,.5)}.bar i{background:linear-gradient(90deg,#2E6A68,#9EAF8B)}
+.ghost{border-color:#FEB8B6;color:var(--fg)}
+.fb{color:var(--ac)}
+</style>
+<style>
+:root{--card:#fff}
+body{background:var(--g1);font-family:'Lexend','Segoe UI',system-ui,sans-serif;font-size:17px;line-height:1.75;letter-spacing:.015em;word-spacing:.06em}
+button,select{letter-spacing:inherit}
+.top{padding-top:28px;padding-bottom:6px}
+.top h1{font-size:1.5rem;font-weight:600;letter-spacing:.01em;line-height:1.3}
+.top p{margin:6px 0 16px}
+.chip,.wk,.btn,.ghost{border-radius:4px;box-shadow:none}
+.chip{padding:6px 14px}
+.card{border-radius:6px;box-shadow:none;animation:none;border:1px solid var(--bd);padding:24px}
+.card h2{font-size:1.2rem;line-height:1.6;font-weight:600;margin-bottom:16px}
+.opt{border-radius:6px;gap:14px;padding:14px 16px;margin:10px 0;line-height:1.6;animation:none}
+.opt:hover:not(:disabled){transform:none;border-color:var(--ac);background:var(--ok)}
+.opt b{width:auto;height:auto;min-width:1.2em;border-radius:0;background:none;display:block;font-size:1rem;font-weight:600;color:var(--ac)}
+.opt.ok{background:var(--ok);border-color:var(--ac);border-width:2px}
+.opt.ok b{background:none;color:var(--fg)}
+.opt.no{background:var(--no);border-color:#c9706d;animation:none}
+.bar{height:4px;border-radius:0;background:var(--bd)}.bar i{background:var(--ac)}
+.meta{margin-bottom:14px}
+.big{font-size:2.4rem;font-weight:600;margin:0;line-height:1.2}
+.rv{line-height:1.7;padding:14px 0}
+</style>
+<style>
+main{max-width:860px;padding:36px 16px 72px}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 28px;max-width:860px;padding:26px 16px 14px;border-bottom:1px solid var(--bd)}
+.top h1{font-size:1.05rem;margin:0}.top p{display:none}
+.tg{gap:18px}
+.chip{border:0;background:none;border-radius:0;padding:0;color:var(--mut);font-size:.9rem;text-decoration:underline;text-underline-offset:4px}
+.chip::after{content:" off"}.chip.on{background:none;color:var(--fg);font-weight:600}.chip.on::after{content:" on"}
+.home{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:start}
+@media(max-width:720px){.home{grid-template-columns:1fr;gap:28px}}
+.lede{font-size:1.5rem;font-weight:500;line-height:1.45;margin:0 0 14px}
+.home label{display:block;margin-top:8px}
+.mut{color:var(--mut)}
+.list{list-style:none;margin:0;padding:0;border-top:1px solid var(--bd)}
+.list button{display:flex;justify-content:space-between;width:100%;padding:14px 4px;background:none;border:0;border-bottom:1px solid var(--bd);border-radius:0;font:inherit;letter-spacing:inherit;color:var(--fg);cursor:pointer;text-align:left}
+.list button:hover{background:rgba(158,175,139,.28)}.list span+span{color:var(--mut)}
+.qhead{display:flex;justify-content:space-between;gap:16px;color:var(--mut);font-size:.9rem;margin-bottom:12px}
+.link{background:none;border:0;padding:0;font:inherit;letter-spacing:inherit;color:var(--mut);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.ticks{display:flex;flex-wrap:wrap;gap:4px}
+.ticks i{width:12px;height:12px;border:1px solid var(--ac);display:block}
+.ticks .y{background:var(--ac)}.ticks .n{background:var(--no);border-color:#c9706d}.ticks .cur{outline:2px solid var(--fg);outline-offset:1px}
+.qtext{font-size:1.55rem;font-weight:500;line-height:1.5;margin:30px 0 22px;max-width:36em}
+.opts{max-width:42em;border-top:1px solid var(--bd)}
+main .opt{display:grid;grid-template-columns:2rem 1fr;gap:8px;width:100%;margin:0;padding:16px 8px;border:0;border-bottom:1px solid var(--bd);border-radius:0;background:none;text-align:left;cursor:pointer;color:var(--fg);transform:none;font-size:1rem}
+main .opt b{font-weight:600;color:var(--mut);min-width:0}
+main .opt:hover:not(:disabled){background:rgba(158,175,139,.28);border-color:var(--bd)}
+main .opt.ok{background:var(--ok);border-width:0 0 1px;border-color:var(--bd);box-shadow:inset 4px 0 0 var(--ac)}
+main .opt.no{background:var(--no);border-color:var(--bd);box-shadow:inset 4px 0 0 #c9706d}
+main .opt.ok span::after{content:" \2014  correct";color:var(--mut);font-size:.85rem}
+main .opt.no span::after{content:" \2014  your answer";color:var(--mut);font-size:.85rem}
+.verdict{font-weight:600;margin:18px 0 0}
+.next{background:var(--ac);color:var(--onac);border:0;border-radius:2px;padding:12px 26px;font:inherit;letter-spacing:inherit;cursor:pointer;margin-top:20px}
+.next[hidden]{display:none}
+.score{font-size:2.4rem;font-weight:500;line-height:1.3;margin:8px 0 18px}
+.acts{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:22px 0 36px}.acts .next{margin:0}
+.rv{border-top:1px solid var(--bd);padding:16px 0;max-width:42em}
+</style>
+<style>
+input{accent-color:var(--ac)}
+.top{max-width:none;margin:0;padding:26px max(16px,calc((100% - 860px)/2 + 16px)) 36px;border:0;background:var(--ok);border-radius:0 0 50% 50%/0 0 34px 34px}
+.home>div:first-child{background:var(--ok);padding:34px 32px 38px;border-radius:26px 100px 26px 100px}
+.list{border:0}.list li{margin:0 0 10px}
+.list button{border:0;border-radius:999px;background:var(--card);padding:13px 16px 13px 26px;align-items:center}
+.list button:hover{background:var(--ok)}
+.list span+span{background:var(--ok);color:var(--fg);border-radius:999px;padding:1px 14px;font-size:.85rem}
+.list button:hover span+span{background:var(--card)}
+.ticks i{border-radius:50%}
+.qtext{background:var(--card);border-radius:28px 80px 28px 80px;padding:30px 40px 30px 34px;max-width:none;margin:22px 0 18px}
+@media(max-width:560px){.qtext{border-radius:24px 48px 24px 48px;padding:24px}}
+.opts{border:0;display:grid;gap:10px;max-width:none}
+main .opt{grid-template-columns:34px 1fr;align-items:center;gap:12px;padding:12px 22px 12px 14px;border:2px solid transparent;border-radius:30px;background:var(--card);box-shadow:none}
+main .opt b{display:grid;place-items:center;width:34px;height:34px;border:1.5px solid var(--bd);border-radius:50%;color:var(--ac)}
+main .opt:hover:not(:disabled){background:var(--ok);border-color:transparent}
+main .opt.ok{background:var(--ok);border-color:var(--ac);box-shadow:none}
+main .opt.ok b{background:var(--ac);color:var(--onac);border-color:var(--ac)}
+main .opt.no{background:var(--no);border-color:#c9706d;box-shadow:none}
+.next{border-radius:999px;padding:13px 32px}
+.score{margin-bottom:20px}
+.rv{border:1px solid var(--bd);border-radius:26px;padding:16px 24px;margin-bottom:10px;background:var(--card)}
+</style>
+<style>
+.weeks{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:10px}
+.weeks li{margin:0}
+.weeks button{width:100%;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border:0;border-radius:22px;background:var(--card);color:var(--fg);font:inherit;letter-spacing:inherit;line-height:1.2;cursor:pointer}
+.weeks button:hover{background:var(--ok)}
+.weeks small{color:var(--mut);font-size:.72rem}
+.weeks b{font-size:1.4rem;font-weight:600}
+.art{display:block;width:min(230px,70%);aspect-ratio:1;border-radius:50%;margin:0 auto 26px;background:#fff}
+</style>
+<style>
+.list button:disabled{opacity:.5;cursor:default}.list button:disabled:hover{background:var(--card)}
+.home label{line-height:1.5}
+.hist{margin-top:20px;background:var(--card);border-radius:24px;padding:14px 22px}
+.hist summary{cursor:pointer;color:var(--mut)}
+.hrow{display:flex;justify-content:space-between;gap:12px;padding:9px 2px;border-bottom:1px solid var(--bd);font-size:.92rem}
+.hist .link{margin-top:12px}
+</style></head><body><header class="top"><h1>Mental Health and Wellbeing</h1><p>Practice questions · Weeks 1–12 · 119 in total</p><div class="tg"><button class="chip on" data-k="sfx">Sounds</button><button class="chip" data-k="tts">Read aloud</button><button class="chip" data-k="amb">Ambience</button></div></header><main>
+<div id="app"></div></main>
+<script>const IMG="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNDAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkhlYWQgaW4gcHJvZmlsZSB3aXRoIGEgc21hbGwgcGxhbnQgZ3Jvd2luZyBpbnNpZGUgaXQiPgo8ZGVmcz48Y2xpcFBhdGggaWQ9ImMiPjxjaXJjbGUgY3g9IjIwMCIgY3k9IjIwMCIgcj0iMTkwIi8+PC9jbGlwUGF0aD48L2RlZnM+CjxjaXJjbGUgY3g9IjIwMCIgY3k9IjIwMCIgcj0iMTk2IiBmaWxsPSIjZmZmIi8+CjxnIGNsaXAtcGF0aD0idXJsKCNjKSI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjRkZERkUwIi8+CjxjaXJjbGUgY3g9IjMxOCIgY3k9IjkyIiByPSIzNiIgZmlsbD0iI0ZFQjhCNiIvPgo8cGF0aCBkPSJNMCAyODUgUTUwIDI2MiAxMDAgMjg1IFQyMDAgMjg1IFQzMDAgMjg1IFQ0MDAgMjg1IFY0MDAgSDBaIiBmaWxsPSIjOUVBRjhCIi8+CjxwYXRoIGQ9Ik0wIDMxOCBRNTAgMjk1IDEwMCAzMTggVDIwMCAzMTggVDMwMCAzMTggVDQwMCAzMTggVjQwMCBIMFoiIGZpbGw9IiMyRTZBNjgiLz4KPHBhdGggZD0iTTExOCAzMzIgQzExNiAyOTIgOTggMjcwIDk4IDIyMiBDOTggMTUyIDE0MyAxMDIgMjAzIDEwMiBDMjYwIDEwMiAyOTMgMTQyIDI5MyAxODYgTDMxMCAyMTYgQzMxMiAyMjEgMzA4IDIyNSAzMDIgMjI1IEwyOTYgMjI1IEwyOTYgMjQzIEMyOTYgMjUzIDI4OCAyNTcgMjc4IDI1NyBMMjYwIDI1NyBMMjYwIDI4NiBDMjYwIDMwMSAyNDggMzExIDIzOCAzMTcgTDIzOCAzMzIgWiIgZmlsbD0iIzJFNkE2OCIvPgo8cGF0aCBkPSJNMTk2IDI3NiBDMTk2IDI0NiAxOTggMjE2IDE5OCAxOTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0RBREVCQiIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTE5OCAyMjIgQzE2OCAyMjIgMTU4IDE5NyAxNjMgMTc2IEMxODggMTc4IDIwMCAxOTggMTk4IDIyMloiIGZpbGw9IiM5RUFGOEIiLz4KPHBhdGggZD0iTTE5OCAyMDAgQzIyOCAyMDAgMjQwIDE3NSAyMzQgMTU1IEMyMTAgMTU3IDE5NiAxNzcgMTk4IDIwMFoiIGZpbGw9IiNEQURFQkIiLz4KPGNpcmNsZSBjeD0iMjU2IiBjeT0iMTc2IiByPSI1IiBmaWxsPSIjRkZERkUwIi8+CjwvZz4KPGNpcmNsZSBjeD0iMjAwIiBjeT0iMjAwIiByPSIxOTMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzJFNkE2OCIgc3Ryb2tlLXdpZHRoPSI2Ii8+Cjwvc3ZnPgo="</script>
+<script>
+const D={
+1:[["Which factor best contributes to overall mental wellbeing?", "Ability to cope with life challenges", "Constant happiness", "Avoiding all stress", "Ignoring emotions", 0],
+["Which of the following is the correct sequence of stages in the General Adaptation Syndrome?", "Resistance → Alarm → Exhaustion", "Alarm → Exhaustion → Resistance", "Alarm → Resistance → Exhaustion", "Exhaustion → Alarm → Resistance", 2],
+["Which behaviour reflects healthy coping?", "Suppressing feelings", "Avoiding problems", "Engaging in hobbies", "Overthinking situations", 2],
+["What is a key characteristic of digital overload?", "Mental exhaustion from excessive information", "Improved focus", "Reduced device usage", "Increased relaxation", 0],
+["Meher compares herself to influencers and feels inferior. Which theory explains this?", "Operant conditioning", "Cognitive dissonance", "Social comparison theory", "Behavioral theory", 2],
+["Which of the following is an example of unhealthy social media behavior?", "Learning new skills", "Connecting with friends", "Watching informative content", "Comparing oneself constantly with others", 3],
+["What is the main purpose of relaxation techniques?", "Increase stress levels", "Improve memory only", "Reduce physiological and mental tension", "Avoid responsibilities", 2],
+["Which practice helps in improving self-awareness?", "Mindful observation of thoughts", "Ignoring emotions", "Multitasking", "Social withdrawal", 0],
+["According to Piaget’s theory, what is the “imaginary audience”?", "A group of friends who provide feedback on behavior", "The belief that others are constantly watching, noticing, and evaluating oneself", "The tendency to imitate people seen in the media", "The ability to understand another person’s perspective", 1]],
+2:[["Peer pressure can best be described as:", "Self-motivation", "Family expectations", "Personal decision-making", "Influence from peers to act in certain ways", 3],
+["Assertiveness helps individuals to:", "Please everyone", "Express thoughts respectfully", "Avoid communication", "Dominate others", 1],
+["Which factor strongly affects body image in adolescents?", "Media influence", "Weather", "Food habits only", "Sleep cycle", 0],
+["What is the purpose of mindfulness?", "Focus on past mistakes", "Worry about future", "Stay present in the moment", "Avoid emotions", 2],
+["Which is a relaxation technique?", "Meditation", "Overthinking", "Isolation", "Procrastination", 0],
+["Emotional regulation refers to:", "Suppressing all emotions", "Ignoring feelings", "Expressing anger freely", "Managing emotions effectively", 3],
+["A student’s peers encourage her to join a study group and maintain a healthier routine. Although she initially feels hesitant, the decision aligns with her personal goals and helps her develop better habits. Which aspect most strongly indicates that this is positive peer pressure?", "She agrees because she does not want to be excluded from the group.", "She feels nervous before making the decision.", "The influence aligns with her values and contributes to personal growth.", "She changes her behaviour primarily to gain approval from her peers.", 2],
+["Active listening involves:", "Interrupting others", "Judging quickly", "Paying full attention", "Ignoring body language", 2],
+["Building self-esteem means:", "Comparing with others", "Accepting oneself", "Seeking validation only", "Avoiding challenges", 1],
+["Why can body image concerns feel more intense during adolescence?", "Adolescents experience very few emotional changes.", "Heightened emotional volatility can amplify concerns about appearance and self-worth.", "Adolescents do not care about their appearance.", "Mood swings reduce concerns about self-worth.", 1]],
+3:[["When faced with two assignments due on the same day, the best first step is to:", "Ignore both assignments", "Complete the easier one without planning", "Prioritize tasks based on deadlines and importance", "Wait until the last minute to decide", 2],
+["Which is an example of unhealthy coping?", "Talking to a friend", "Exercise", "Journaling", "Excessive social media", 3],
+["Which of the following reflects effective emotional regulation?", "Ignoring feelings completely", "Recognizing emotions and choosing a response", "Reacting immediately without thinking", "Blaming others for emotional distress", 1],
+["A friend is upset, and you respond by saying, “It sounds like you’re feeling disappointed because your project didn’t go as planned.” This demonstrates:", "Criticism", "Active listening", "Giving unwanted advice", "Changing the subject", 1],
+["A student breaks a large assignment into smaller tasks with deadlines. This is an example of:", "Goal setting and time management", "Avoidance", "Emotional suppression", "Conflict awareness", 0],
+["Regular physical activity contributes to mental well-being by:", "Increasing stress hormones", "Reducing endorphin levels", "Causing emotional instability", "Enhancing mood through neurochemical changes", 3],
+["A person who understands others’ feelings during conflict shows:", "Sympathy only", "Indifference", "Aggression", "Empathy", 3],
+["A student fails an exam but plans a new study strategy instead of giving up. This best demonstrates:", "Avoidance coping", "Emotional suppression", "Resilience", "Denial", 2],
+["A student disagrees with a classmate but speaks calmly, listens carefully, and looks for a solution that benefits both. This is an example of:", "Conflict resolution", "Aggressive communication", "Emotional avoidance", "Passive behaviour", 0],
+["Which is NOT a component of SMART goals?", "Specific", "Measurable", "Arbitrary", "Time-bound", 2]],
+4:[["Which of the following is NOT a source of academic pressure?", "High expectations from parents", "Time constraints", "Balanced lifestyle", "Fear of failure", 2],
+["Difficulty in concentration and negative thinking are examples of:", "Behavioural symptoms", "Emotional symptoms", "Physical symptoms", "Cognitive symptoms", 3],
+["Emotional intelligence refers to the ability to:", "Solve mathematical problems", "Understand and manage emotions", "Manage time effectively", "Memorize information", 1],
+["Career Decision Scale (CDS) is used to measure:", "Intelligence", "Career indecision", "Emotional intelligence", "Personality traits", 1],
+["Which of the following is an ethical responsibility of a therapist?", "Making all decisions on behalf of the client", "Guaranteeing that therapy will always be successful", "Maintaining confidentiality and obtaining informed consent", "Sharing client information with friends for advice", 2],
+["Which activity is most helpful for relaxing the mind?", "Continuous worrying", "Meditation", "Skipping meals", "Excessive screen time", 1],
+["A person should seek help when:", "Everything is going well", "Problems disturb daily routine", "Only during holidays", "Never", 1],
+["Which habit improves time management?", "Planning tasks", "Ignoring deadlines", "Studying randomly", "Sleeping less", 0],
+["Social responsibility includes:", "Helping others", "Ignoring society", "Competing always", "Focusing only on self", 0],
+["What is the primary distinction between counselling and psychotherapy?", "Counselling focuses only on mental illness, while psychotherapy focuses on education", "Counselling is generally shorter-term and addresses specific or everyday concerns, while psychotherapy may be longer-term and addresses deeper mental health concerns", "Counselling is provided only by psychiatrists, while psychotherapy is provided only by counsellors", "There is no difference between counselling and psychotherapy", 1]],
+5:[["What is emotional validation?", "Ignoring emotions to stay strong", "Accepting and acknowledging one’s own or others’ emotions", "Controlling emotions completely", "Avoiding emotional discussions", 1],
+["What is the main purpose of emotional ventilation?", "Suppressing emotions", "Expressing emotions in a healthy way", "Avoiding emotional experiences", "Criticising others’ feelings", 1],
+["Which skill is essential for emotional validation?", "Judgment", "Active listening", "Avoidance", "Silence", 1],
+["Emotional suppression can lead to:", "Increased well-being", "Better communication", "Mental health issues", "Emotional clarity", 2],
+["Which of the following is a type of boundary?", "Financial boundary", "Emotional boundary", "Academic boundary", "Political boundary", 1],
+["What is assertiveness in boundary setting?", "Being aggressive", "Being passive", "Expressing needs clearly and respectfully", "Avoiding confrontation", 2],
+["What helps in managing emotional overwhelm?", "Ignoring stress", "Mindfulness and grounding", "Overworking", "Isolation", 1],
+["Emotional triggers are:", "Random thoughts", "Situations that provoke emotional reactions", "Physical symptoms only", "Irrelevant experiences", 1],
+["Emotional resilience refers to:", "Avoiding emotions", "Reacting impulsively", "Ability to adapt and recover from stress", "Ignoring problems", 2],
+["Social support contributes to:", "Increased stress", "Emotional resilience", "Isolation", "Conflict", 1]],
+6:[["Journaling helps in:", "Stress increase", "Confusion", "Emotional clarity", "Avoidance", 2],
+["Gratitude journaling improves:", "Stress levels", "Negative thinking", "Fear", "Positive mindset", 3],
+["Movement therapies include:", "Dancing and yoga", "Sleeping", "Watching TV", "Studying", 0],
+["Storytelling helps in:", "Increasing anxiety", "Ignoring problems", "Self-exploration", "Avoiding emotions", 2],
+["Which is a mindfulness technique?", "Overthinking", "Avoiding study", "Panic", "Deep breathing", 3],
+["Exam anxiety can affect:", "Only physical health", "Only mental health", "Both mental and physical health", "Neither", 2],
+["A study schedule helps in:", "Increasing stress", "Avoiding exams", "Managing time effectively", "Confusion", 2],
+["Positive self-talk helps to:", "Build confidence", "Increase fear", "Reduce memory", "Create stress", 0],
+["How do creative arts and therapies support emotional well-being?", "By allowing non-verbal communication and reducing stress", "By suppressing emotions and causing confusion", "By increasing fear and anxiety", "By avoiding feelings and memory loss", 0],
+["What strategies help in managing exam anxiety effectively?", "Stress related to exams managed through time planning", "Skipping sleep and avoiding study", "Happiness before exams and procrastination", "Physical strength and ignoring preparation", 0]],
+7:[["Relationship trauma may result from:", "Trust", "Respect", "Support", "Betrayal or abuse", 3],
+["Avoidant individuals in relationships tend to:", "Seek reassurance", "Be overly expressive", "Maintain emotional distance", "Become dependent", 2],
+["Which of the following is most important for maintaining a healthy work-life balance?", "Ignoring stress", "Time management", "Overworking", "Avoiding responsibility", 1],
+["Setting healthy personal boundaries primarily helps in:", "Increasing stress", "Avoiding tasks", "Reducing clarity", "Preventing burnout", 3],
+["Healthy friendships are best characterized by:", "Competition", "Control", "Mutual respect", "Superiority", 2],
+["Communication in a secure attachment relationship is generally:", "Aggressive", "Passive", "Avoidant", "Open and honest", 3],
+["Conflict resolution in secure relationships typically involves:", "Blaming the other person", "Remaining silent", "Avoiding the issue", "Mutual understanding and problem-solving", 3],
+["Developing a secure attachment style requires:", "Avoiding emotional closeness", "Emotional awareness and healthy expression", "Ignoring personal needs", "Fear of rejection", 1],
+["According to attachment theory, which parenting pattern is most likely to contribute to the development of an anxious attachment style in children?", "Consistent warmth with predictable responsiveness", "Emotionally distant and consistently rejecting caregiving", "Inconsistent caregiving with unpredictable responsiveness to the child’s needs", "Encouraging age-appropriate independence while remaining emotionally available", 2],
+["A person with a history of relationship trauma has worked through therapy and developed a secure attachment style. Which behaviour best reflects this change?", "Avoiding intimate relationships to prevent emotional pain", "Depending entirely on a partner for emotional security and decision-making", "Communicating needs openly, maintaining healthy boundaries, and tolerating emotional vulnerability without excessive fear", "Suppressing emotions and focusing exclusively on work to avoid interpersonal closeness", 2]],
+8:[["What is the key difference between intrinsic and extrinsic motivation?", "Intrinsic motivation is driven by external rewards", "Intrinsic motivation arises from internal satisfaction, while extrinsic comes from external rewards", "Extrinsic motivation is self-generated", "Both types involve competition", 1],
+["During a mental health emergency, what should a professional focus on first?", "Gathering paperwork", "Making assumptions", "Ensuring safety and stabilizing the individual", "Discussing past history", 2],
+["How does positive reinforcement influence motivation?", "It increases the likelihood of repeating desired behaviours by rewarding them", "It provides punishment for poor performance", "It discourages repetition of behaviours", "It delays goal achievement", 0],
+["Why is aligning goals with personal values important for motivation?", "It helps reduce emotional attachment", "It decreases goal clarity", "It strengthens commitment and engagement", "It prevents decision-making", 2],
+["Which skill is essential in Psychological First Aid?", "Debating the cause of the crisis", "Active listening and empathic presence", "Avoiding eye contact", "Giving unsolicited advice", 1],
+["Which of the following is a warning sign of suicidal ideation in students?", "Improved academic performance", "Talking about feeling hopeless or being a burden", "Expressing excitement about future plans", "Increased interest in group activities", 1],
+["What is a key strategy for approaching someone who may be thinking about suicide?", "Avoid asking direct questions", "Use vague suggestions", "Ignore signs unless they ask for help", "Speak openly, with compassion and without judgment", 3],
+["What defines resilience in the context of mental health?", "Avoiding emotional expression", "The ability to adapt and recover from adversity", "Suppressing difficult experiences", "Always feeling happy regardless of circumstances", 1],
+["Which strategy helps cultivate resilience during a crisis?", "Ignoring emotions and focusing only on tasks", "Denying the impact of stress", "Practicing optimism and emotional awareness", "Isolating oneself to prevent burdening others", 2],
+["What is an effective way to prevent burnout?", "Setting boundaries and prioritizing self-care", "Ignoring personal needs", "Taking on more responsibilities", "Avoiding breaks to maintain productivity", 0]],
+9:[["What is one way to prepare well for a meeting with a supervisor?", "Arrive with no agenda or notes", "Send your supervisor a brief agenda in advance", "Wait for the supervisor to ask all questions", "Only discuss problems you can solve yourself", 1],
+["Which practice supports trust in a mentor–student relationship?", "Sharing only partial information to avoid criticism", "Asking for extensions right before every deadline", "Promising effort without updating on progress", "Meeting deadlines and being honest about delays", 3],
+["Why is it important to ask clarifying questions of a supervisor?", "To make the meeting last longer", "To confirm that you understand the task correctly", "To show that you disagree with their instructions", "To avoid asking for feedback later", 1],
+["Which of the following best describes a respectful mentor–student dynamic?", "Both parties respect time, boundaries, and communication norms", "The student avoids all emails and only speaks in class", "The student ignores feedback but praises the mentor", "The mentor makes all decisions without student input", 0],
+["What is most likely to weaken a supervisory relationship?", "Regular progress updates and openness about challenges", "Being honest about not understanding part of the task", "Repeatedly missing deadlines without explanation", "Asking for help whenever you feel stuck", 2],
+["Which message style is most appropriate for official communication with a supervisor?", "Very casual, with emojis and slang", "Written only in voice-note form", "Extremely long and detailed for every small issue", "Polite, clear, and professional in tone", 3],
+["What is a sign of a healthy academic relationship with a mentor?", "The student hides struggles to appear perfect", "Both parties respect each other’s time and boundaries", "The mentor never checks on progress", "The student rarely asks questions", 1],
+["Which of the following is helpful when you feel confused about your supervisor’s instructions?", "Ask for examples or clarification politely", "Stay silent and hope you figure it out later", "Immediately switch to a different mentor", "Ignore the instructions and work in your own way", 0],
+["Why is it important to be honest about your workload with a supervisor?", "It guarantees you will get easier tasks", "It helps them suggest realistic timelines and priorities", "It shifts full responsibility for planning onto you", "It proves that you are overqualified", 1],
+["Which behavior shows respect for a mentor’s expertise?", "Repeatedly arguing without evidence", "Ignoring their suggestions and doing your own thing", "Listening carefully and considering their advice", "Publicly criticizing them in front of peers", 2]],
+10:[["Which behaviour demonstrates emotional intelligence in conflict resolution?", "Listening actively and validating feelings", "Ignoring the other person’s perspective", "Responding with aggression immediately", "Avoiding all communication", 0],
+["When recovering from illness, which choice reflects balanced self-care?", "Ignoring medical advice", "Refusing to adjust routines at all", "Gradually resuming responsibilities with rest breaks", "Overexerting to “catch up” quickly", 2],
+["Which element most influences identity exploration in adolescence?", "Physical appearance alone", "Daily temperature changes", "Random coincidences only", "Experimenting with different roles and values", 3],
+["What improves the quality of group decision-making?", "Considering diverse viewpoints before deciding", "Acting on impulse without discussion", "Copying the loudest voice in the room", "Avoiding responsibility for choices", 0],
+["Which preparation strategy reduces nervousness before public speaking?", "Avoiding rehearsal entirely", "Practicing relaxation techniques like progressive muscle relaxation", "Comparing negatively with experienced speakers", "Pretending the event isn’t important", 1],
+["What strengthens resilience during long-term challenges?", "Avoiding effort altogether", "Giving up after minor setbacks", "Seeking approval constantly", "Building supportive relationships and coping strategies", 3],
+["What is a common outcome of unmanaged academic stress?", "Sleep enhancement", "Improved emotional regulation", "Decline in concentration and motivation", "Unlimited productivity", 2],
+["Which lifestyle habit promotes sustainable self-care?", "Establishing consistent sleep routines", "Skipping meals to save time", "Working without rest breaks", "Neglecting hydration needs", 0],
+["How can individuals transform mistakes into growth opportunities?", "Blaming others exclusively", "Ignoring all past errors", "Journaling reflections and setting improvement goals", "Rejecting feedback outright", 2],
+["What is a healthy coping response when stress builds suddenly?", "Using mindfulness to regain focus", "Reacting impulsively with frustration", "Escaping responsibilities immediately", "Assigning blame to others", 0]],
+11:[["Which of the following best describes academic stress?", "Stress caused only by exams", "Pressure related to educational demands and expectations", "Stress due to physical illness only", "Stress unrelated to studies", 1],
+["What is a common physical symptom of stress?", "Improved memory", "Muscle tension", "Increased relaxation", "Better sleep", 1],
+["Which breathing technique is commonly used in mindfulness practice?", "Rapid breathing", "Deep diaphragmatic breathing", "Irregular breathing", "Breath holding", 1],
+["How does regular physical activity help manage stress?", "Increases stress hormones", "Reduces mood levels", "Improves mood through endorphin release", "Causes fatigue only", 2],
+["Which of the following can improve stress resilience?", "Negative thinking", "Social support", "Isolation", "Ignoring problems", 1],
+["What happens when stress is prolonged?", "Improved concentration", "Better relaxation", "Mental and physical exhaustion", "Increased happiness", 2],
+["Which activity promotes relaxation during exams?", "Panic studying", "Short breathing exercises", "Avoiding breaks", "Cramming overnight", 1],
+["Time management helps reduce stress by:", "Increasing confusion", "Organizing tasks effectively", "Avoiding deadlines", "Ignoring priorities", 1],
+["Which of the following is most helpful for maintaining focus when feeling stressed?", "Trying to complete multiple tasks simultaneously", "Taking short, planned breaks", "Avoiding all difficult tasks", "Working continuously without rest", 1],
+["Why is it important to identify personal stress triggers?", "To completely avoid all responsibilities", "To understand what contributes to stress and respond more effectively", "To increase workload", "To ignore stressful situations", 1]],
+12:[["Body image refers to:", "Physical fitness level", "Perception and feelings about one’s body", "Body weight only", "Medical health status", 1],
+["Upward social comparison leads to:", "Increased confidence always", "Comparing with less successful people", "Comparing with better-looking or more successful people", "Ignoring others", 2],
+["Objectification theory suggests that:", "People ignore appearance", "Individuals see themselves from an outsider’s perspective", "Social media has no effect", "Only men are affected", 1],
+["FOMO stands for:", "Fear of Missing Out", "Fear of Mental Overload", "Feeling of Mood Oscillation", "Focus on Media Output", 0],
+["Digital fatigue is:", "Physical illness only", "Mental exhaustion from excessive screen time", "Lack of sleep only", "Internet failure", 1],
+["Which is a key feature of cyberbullying?", "Face-to-face interaction", "Limited impact", "Online harassment", "Only adults are affected", 2],
+["Social media activates which brain chemical?", "Serotonin", "Dopamine", "Melatonin", "Insulin", 1],
+["Curated content means:", "Raw, unedited life", "Random posts", "Selectively edited and idealized posts", "Scientific data", 2],
+["Which of the following can negatively affect a person’s self-esteem when using social media?", "Comparing oneself with others online", "Taking regular breaks from social media", "Following positive and supportive content", "Limiting screen time", 0],
+["Which of the following is a healthy approach to social media use?", "Checking social media whenever feeling stressed", "Comparing your appearance with influencers", "Setting boundaries around screen time", "Seeking validation through likes and comments", 2]]};
+const app=document.getElementById('app');let Q=[],i=0,sc=0,done=false;
+function home(){app.innerHTML=`<div class="card"><p>Pick a week, or mix everything. Answers show instantly.</p><div class="row"><select id="w"><option value="all">All weeks (${Object.values(D).flat().length} questions)</option>${Object.keys(D).map(k=>`<option value="${k}">Week ${k}</option>`).join('')}</select><label><input type="checkbox" id="s"> Shuffle</label><button class="btn" id="go">Start</button></div><p><small>All 12 weeks included.</small></p></div>`;
+go.onclick=()=>{const v=w.value;Q=(v=='all'?Object.entries(D).flatMap(([k,a])=>a.map(q=>[k,q])):D[v].map(q=>[v,q]));if(s.checked)Q.sort(()=>Math.random()-.5);i=0;sc=0;show()}}
+function show(){if(i>=Q.length){app.innerHTML=`<div class="card"><h2>Score: ${sc} / ${Q.length}</h2><p>${Math.round(100*sc/Q.length)}%</p><button class="btn" id="h">Back</button></div>`;h.onclick=home;return}
+const [wk,q]=Q[i];done=false;app.innerHTML=`<div class="bar"><i style="width:${100*i/Q.length}%"></i></div><p><small>Week ${wk} · Question ${i+1}/${Q.length} · Score ${sc}</small></p><div class="card"><b>${q[0]}</b>${[1,2,3,4].map(n=>`<button class="opt" data-n="${n-1}">${'abcd'[n-1]}) ${q[n]}</button>`).join('')}</div><button class="btn" id="nx" hidden>Next</button>`;
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(done)return;done=true;const n=+b.dataset.n;if(n==q[5])sc++;document.querySelectorAll('.opt').forEach(o=>{o.disabled=true;if(+o.dataset.n==q[5])o.classList.add('ok')});if(n!=q[5])b.classList.add('no');nx.hidden=false});
+nx.onclick=()=>{i++;show()}}
+home();
+</script>
+<script>
+let ac,mus=null,sfx=true,tts=false,amb=false,sel='all',shuf=false,qs=[],ix=0,score=0,locked=false,streak=0,best=0,miss=[];
+const A=()=>{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state=='suspended')ac.resume();return ac};
+function tone(f,t0,d,type='sine',v=.15){const c=A(),o=c.createOscillator(),g=c.createGain(),t=c.currentTime+t0;o.type=type;o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g).connect(c.destination);o.start(t);o.stop(t+d+.05)}
+const snd={ok:()=>[523,659,784].forEach((f,k)=>tone(f,k*.09,.3)),no:()=>{tone(180,0,.25,'sawtooth',.07);tone(140,.12,.3,'sawtooth',.07)},tap:()=>tone(660,0,.08,'triangle',.08),end:()=>[523,659,784,1047].forEach((f,k)=>tone(f,k*.12,.5))};
+function play(n){if(sfx){try{snd[n]()}catch(e){}}}
+function ambience(on){if(on){const c=A(),b=c.createBuffer(1,c.sampleRate*2,c.sampleRate),d=b.getChannelData(0);for(let k=0;k<d.length;k++)d[k]=Math.random()*2-1;const s=c.createBufferSource();s.buffer=b;s.loop=true;const f=c.createBiquadFilter();f.type='lowpass';f.frequency.value=420;const g=c.createGain();g.gain.value=.05;s.connect(f).connect(g).connect(c.destination);s.start();mus={s,t:setInterval(()=>{const f0=2200+Math.random()*1500,t=c.currentTime,o=c.createOscillator(),gg=c.createGain();o.frequency.setValueAtTime(f0,t);o.frequency.exponentialRampToValueAtTime(f0*1.4,t+.12);gg.gain.setValueAtTime(.025,t);gg.gain.exponentialRampToValueAtTime(.001,t+.18);o.connect(gg).connect(c.destination);o.start(t);o.stop(t+.2)},2500)}}else if(mus){mus.s.stop();clearInterval(mus.t);mus=null}}
+function say(t){if(tts&&window.speechSynthesis){const u=new SpeechSynthesisUtterance(t),vs=speechSynthesis.getVoices(),en=vs.filter(x=>/^en/i.test(x.lang)),v=en.find(x=>/male|david|daniel|alex|fred|george|james|mark|rishi|ravi/i.test(x.name)&&!/female/i.test(x.name))||en[0];if(v)u.voice=v;u.pitch=.15;u.rate=1.8;speechSynthesis.cancel();speechSynthesis.speak(u)}}
+function sayQ(){const q=qs[ix][1];say(q[0]+' '+[1,2,3,4].map(n=>'ABCD'[n-1]+'. '+q[n]).join('. '))}
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{const k=c.dataset.k;c.classList.toggle('on');if(k=='sfx')sfx=!sfx;if(k=='tts'){tts=!tts;if(!tts&&window.speechSynthesis)speechSynthesis.cancel();else if(qs[ix]&&document.querySelector('.opt'))sayQ()}if(k=='amb'){amb=!amb;ambience(amb)}play('tap')});
+function home(){if(window.speechSynthesis)speechSynthesis.cancel();
+app.innerHTML=`<div class="card"><h2>Select questions</h2><div class="grid">${['all',...Object.keys(D)].map(k=>`<button class="wk${k==sel?' on':''}" data-k="${k}">${k=='all'?'All weeks<small>'+Object.values(D).flat().length+' Qs</small>':'Week '+k+'<small>'+D[k].length+' Qs</small>'}</button>`).join('')}</div><div class="row"><div><label><input type="checkbox" id="s2" ${shuf?'checked':''}> Shuffle questions</label><br><label><input type="checkbox" id="s3" ${shufO?'checked':''}> Shuffle answer options</label></div><button class="btn" id="go2">Start quiz</button></div>${wrong.size?`<button class="ghost" id="rv" style="margin-top:12px;width:100%">Review missed questions (${wrong.size})</button>`:''}</div>`;
+document.querySelectorAll('.wk').forEach(b=>b.onclick=()=>{sel=b.dataset.k;document.querySelectorAll('.wk').forEach(x=>x.classList.toggle('on',x==b));play('tap')});
+document.getElementById('s2').onchange=e=>shuf=e.target.checked;document.getElementById('s3').onchange=e=>shufO=e.target.checked;document.getElementById('go2').onclick=()=>start();const r=document.getElementById('rv');if(r)r.onclick=()=>start(true)}
+const key=(k,q)=>k+'|'+q[0],wrong=new Map();let lastRev=false,shufO=false;
+function saveW(){try{localStorage.setItem('mhWrong',JSON.stringify([...wrong.keys()]))}catch(e){}}
+try{const ks=JSON.parse(localStorage.getItem('mhWrong')||'[]');Object.entries(D).forEach(([k,a])=>a.forEach(q=>{if(ks.includes(key(k,q)))wrong.set(key(k,q),[k,q])}))}catch(e){}
+function shuffle(a){for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a}
+function start(rev){const wo=rev==='w';rev=rev===true;lastRev=wo?'w':rev;qs=wo?[...wrong.values()].filter(v=>sel=='all'||v[0]==sel):rev?[...wrong.values()]:sel=='all'?Object.entries(D).flatMap(([k,a])=>a.map(q=>[k,q])):D[sel].map(q=>[sel,q]);
+if(shuf)shuffle(qs);if(shufO){qs=qs.map(([k,q])=>{const o=shuffle([1,2,3,4].map(n=>[q[n],n-1==q[5]]));return[k,[q[0],...o.map(x=>x[0]),o.findIndex(x=>x[1])]]})}
+ix=0;score=0;streak=0;best=0;miss=[];play('tap');show()}
+let amb2=null;
+function ambience(on){if(amb2){amb2.stop();amb2=null}if(!on)return;
+const c=A(),m=c.createGain();m.gain.value=.5;m.connect(c.destination);const src=[],tm={};
+const noise=brown=>{const b=c.createBuffer(1,c.sampleRate*4,c.sampleRate),d=b.getChannelData(0);let l=0;for(let k=0;k<d.length;k++){const w=Math.random()*2-1;if(brown){l=(l+.02*w)/1.02;d[k]=l*3.5}else d[k]=w}const s=c.createBufferSource();s.buffer=b;s.loop=true;src.push(s);return s};
+const lfo=(f,depth,param)=>{const o=c.createOscillator(),g=c.createGain();o.frequency.value=f;g.gain.value=depth;o.connect(g).connect(param);o.start();src.push(o)};
+const w=noise(true),wf=c.createBiquadFilter(),wg=c.createGain();wf.type='lowpass';wf.frequency.value=500;wg.gain.value=.1;w.connect(wf).connect(wg).connect(m);lfo(.07,.05,wg.gain);lfo(.05,150,wf.frequency);w.start();
+const r=noise(false),rf=c.createBiquadFilter(),rg=c.createGain();rf.type='bandpass';rf.frequency.value=900;rf.Q.value=1;rg.gain.value=.002;r.connect(rf).connect(rg).connect(m);lfo(.07,.004,rg.gain);r.start();
+const cr=c.createOscillator(),cg=c.createGain();cr.frequency.value=4300;cg.gain.value=.0015;cr.connect(cg).connect(m);lfo(9,.0015,cg.gain);cr.start();src.push(cr);
+const bird=()=>{const t=c.currentTime,n=2+Math.floor(Math.random()*4),f0=2400+Math.random()*1800,up=Math.random()<.5,sp=.1+Math.random()*.06,pan=c.createStereoPanner?c.createStereoPanner():null;if(pan){pan.pan.value=Math.random()*1.6-.8;pan.connect(m)}
+for(let k=0;k<n;k++){const o=c.createOscillator(),g=c.createGain(),s=t+k*sp;o.type='sine';o.frequency.setValueAtTime(f0*(1+(k%2)*.12),s);o.frequency.exponentialRampToValueAtTime(f0*(up?1.35:.8),s+.07);g.gain.setValueAtTime(0,s);g.gain.linearRampToValueAtTime(.022,s+.012);g.gain.exponentialRampToValueAtTime(.0005,s+.09);o.connect(g).connect(pan||m);o.start(s);o.stop(s+.1)}
+};
+const tone1=(f1,f2,s,d,v,type)=>{const o=c.createOscillator(),g=c.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f1,s);o.frequency.exponentialRampToValueAtTime(f2,s+d);g.gain.setValueAtTime(0,s);g.gain.linearRampToValueAtTime(v,s+d*.2);g.gain.exponentialRampToValueAtTime(.0005,s+d);o.connect(g).connect(m);o.start(s);o.stop(s+d+.05)};
+const dove=()=>{const t=c.currentTime;[0,.45,.75,1.05].forEach((o,k)=>tone1(k?520:600,k?430:480,t+o,.35,.03))};
+const knock=()=>{const t=c.currentTime,n=6+Math.floor(Math.random()*6);for(let k=0;k<n;k++)tone1(1100,700,t+k*.075,.04,.03,'triangle')};
+const hoot=()=>{const t=c.currentTime;tone1(380,330,t,.5,.025);tone1(380,300,t+.8,.8,.03)};
+const nxt=()=>{const r=Math.random();(r<.6?bird:r<.78?dove:r<.9?knock:hoot)();tm.t=setTimeout(nxt,3500+Math.random()*7000)};
+tm.t=setTimeout(nxt,1500);
+amb2={stop(){clearTimeout(tm.t);src.forEach(s=>{try{s.stop()}catch(e){}});m.disconnect()}}}
+function show(){if(ix>=qs.length)return fin();const [wk,q]=qs[ix];locked=false;
+app.innerHTML=`<div class="bar"><i style="width:${100*ix/qs.length}%"></i></div><div class="meta"><span>Week ${wk} · ${ix+1}/${qs.length}</span><span>Streak ${streak} · Correct ${score}</span></div><div class="card"><h2>${q[0]}</h2>${[1,2,3,4].map(n=>`<button class="opt" data-n="${n-1}"><b>${'ABCD'[n-1]}</b><span>${q[n]}</span></button>`).join('')}<div class="fb" id="fb"></div></div><div class="row"><button class="ghost" id="qt">Quit</button><button class="btn" id="nx2" hidden>${ix+1==qs.length?'Finish':'Next question'}</button></div>`;
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.n));
+document.getElementById('qt').onclick=home;document.getElementById('nx2').onclick=nxt;sayQ()}
+function pick(n){if(locked)return;locked=true;const q=qs[ix][1],ok=n==q[5];if(ok){score++;streak++;best=Math.max(best,streak);wrong.delete(key(qs[ix][0],q));saveW();play('ok')}else{streak=0;miss.push([q,n]);wrong.set(key(qs[ix][0],q),[qs[ix][0],q]);saveW();play('no')}
+document.querySelectorAll('.opt').forEach(o=>{o.disabled=true;if(+o.dataset.n==q[5])o.classList.add('ok');else if(+o.dataset.n==n)o.classList.add('no')});
+document.getElementById('fb').textContent=ok?'Correct.':'Incorrect. The right answer is '+'ABCD'[q[5]]+'.';document.getElementById('nx2').hidden=false;if(window.speechSynthesis&&tts)speechSynthesis.cancel()}
+function nxt(){ix++;show()}
+function fin(){const p=Math.round(100*score/qs.length);play('end');if(window.speechSynthesis)speechSynthesis.cancel();
+app.innerHTML=`<div class="card"><h2>${p>=80?'Strong result':p>=50?'Solid effort':'Worth another pass'}</h2><p class="big">${score} / ${qs.length}</p><p>${p}% correct · Longest streak ${best}</p><div class="row" style="justify-content:flex-start;gap:10px"><button class="btn" id="again">Try again</button>${wrong.size?`<button class="ghost" id="rv2">Review missed (${wrong.size})</button>`:''}<button class="ghost" id="hm">Home</button></div></div>${miss.length?`<div class="card" style="margin-top:12px"><h2>Review (${miss.length} missed)</h2>${miss.map(([q,n])=>`<div class="rv"><b>${q[0]}</b><br>Your answer: ${q[n+1]}<br><em>Correct: ${q[q[5]+1]}</em></div>`).join('')}</div>`:''}`;
+document.getElementById('again').onclick=()=>start(lastRev);document.getElementById('hm').onclick=home;const r2=document.getElementById('rv2');if(r2)r2.onclick=()=>start(true)}
+document.addEventListener('keydown',e=>{if(!document.querySelector('.opt'))return;const n='abcd1234'.indexOf(e.key.toLowerCase());if(n>=0&&!locked)pick(n%4);else if(e.key=='Enter'&&locked)nxt()});
+home();
+</script>
+<script>
+let res=[];
+const L=n=>'ABCD'[n];
+const ticks=()=>`<div class="ticks">${qs.map((_,k)=>`<i class="${k<res.length?(res[k]?'y':'n'):k==ix?'cur':''}"></i>`).join('')}</div>`;
+let t0=0,tid=null,onlyW=false,hist=[],bests={};try{hist=JSON.parse(localStorage.getItem('mhHist')||'[]')}catch(e){}try{bests=JSON.parse(localStorage.getItem('mhBest')||'{}')}catch(e){}
+const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+const bkey=()=>lastRev?null:sel;
+function tick(){const e=document.getElementById('tm');if(e){const k=bkey();e.textContent='Time '+fmt(Math.floor((Date.now()-t0)/1000))+(k!=null&&bests[k]!=null?' \u00b7 Best '+fmt(bests[k]):'')}}
+function go(rev){res=[];t0=Date.now();clearInterval(tid);start(rev);tid=setInterval(tick,1000)}
+function home(){clearInterval(tid);if(window.speechSynthesis)speechSynthesis.cancel();
+app.innerHTML=`<div class="home"><div><img class="art" src="${IMG}" alt="Illustration of a head in profile with a small plant growing inside it"><h2 class="lede">${Object.values(D).flat().length} questions across Weeks 1 to 12.</h2><p class="mut">Pick a week from the list. Each answer is shown as soon as you choose it.</p><label><input type="checkbox" id="s2" ${shuf?'checked':''}> Shuffle question order</label><label><input type="checkbox" id="s3" ${shufO?'checked':''}> Shuffle answer options</label><label><input type="checkbox" id="s4" ${onlyW?'checked':''}> Practice only my wrong answers when I pick a week</label></div><div><ol class="list"><li><button data-k="rev" ${wrong.size?'':'disabled'}><span>Practice wrong answers</span><span>${wrong.size}</span></button></li><li><button data-k="all"><span>All weeks</span><span>${Object.values(D).flat().length} questions${bests.all!=null?' · best '+fmt(bests.all):''}</span></button></li></ol><p class="mut" style="margin:18px 0 8px">Or choose a week</p><ol class="weeks">${Object.keys(D).map(k=>`<li><button data-k="${k}"><small>Week</small><b>${k}</b>${bests[k]!=null?`<small>${fmt(bests[k])}</small>`:''}</button></li>`).join('')}</ol><p id="note" class="mut" style="min-height:1.6em;margin:10px 0 0"></p>${hist.length?`<details class="hist"><summary>Timer history</summary>${hist.map(h=>`<div class="hrow"><span>${h.s}</span><span>${h.c}/${h.n} · ${fmt(h.t)}</span><span>${new Date(h.d).toLocaleDateString(undefined,{day:'numeric',month:'short'})}</span></div>`).join('')}<button class="link" id="clr">Clear history</button></details>`:''}</div></div>`;
+document.getElementById('s2').onchange=e=>shuf=e.target.checked;document.getElementById('s3').onchange=e=>shufO=e.target.checked;document.getElementById('s4').onchange=e=>onlyW=e.target.checked;const cl=document.getElementById('clr');if(cl)cl.onclick=()=>{hist=[];try{localStorage.removeItem('mhHist')}catch(e){}home()};
+document.querySelectorAll('.list button,.weeks button').forEach(b=>b.onclick=()=>{const k=b.dataset.k;if(k=='rev')return go(true);sel=k;if(onlyW){const n=[...wrong.values()].filter(v=>k=='all'||v[0]==k).length;if(!n){document.getElementById('note').textContent='No wrong answers saved for '+(k=='all'?'any week':'Week '+k)+' yet.';return}return go('w')}go(false)})}
+function show(){if(ix>=qs.length)return fin();const [wk,q]=qs[ix];locked=false;
+app.innerHTML=`<div class="qhead"><span>Week ${wk} · Question ${ix+1} of ${qs.length} · <span id="tm"></span></span><button class="link" id="qt">Back to list</button></div>${ticks()}<h2 class="qtext">${q[0]}</h2><div class="opts">${[1,2,3,4].map(n=>`<button class="opt" data-n="${n-1}"><b>${L(n-1)}</b><span>${q[n]}</span></button>`).join('')}</div><div id="fb"></div><button class="next" id="nx2" hidden>${ix+1==qs.length?'See result':'Next question'}</button>`;
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.n));
+document.getElementById('qt').onclick=home;document.getElementById('nx2').onclick=nxt;tick();sayQ()}
+function pick(n){if(locked)return;locked=true;const q=qs[ix][1],ok=n==q[5];
+if(ok){score++;streak++;best=Math.max(best,streak);wrong.delete(key(qs[ix][0],q))}else{streak=0;miss.push([q,n]);wrong.set(key(qs[ix][0],q),[qs[ix][0],q])}
+saveW();res[ix]=ok;play(ok?'ok':'no');if(window.speechSynthesis&&tts)speechSynthesis.cancel();
+document.querySelectorAll('.opt').forEach(o=>{o.disabled=true;const m=+o.dataset.n;if(m==q[5])o.classList.add('ok');else if(m==n)o.classList.add('no')});
+document.getElementById('fb').innerHTML=ok?'<p class="verdict">Correct.</p>':`<p class="verdict">The answer is ${L(q[5])}.</p>`;
+document.querySelector('.ticks').outerHTML=ticks();document.getElementById('nx2').hidden=false}
+function fin(){const p=Math.round(100*score/qs.length);clearInterval(tid);const el=Math.floor((Date.now()-t0)/1000),k=bkey(),prev=k!=null?bests[k]:undefined,nb=k!=null&&(prev==null||el<prev);if(nb){bests[k]=el;try{localStorage.setItem('mhBest',JSON.stringify(bests))}catch(e){}}hist.unshift({s:lastRev==='w'?'Wrong only · '+(sel=='all'?'all weeks':'Week '+sel):lastRev?'Missed questions':sel=='all'?'All weeks':'Week '+sel,t:el,c:score,n:qs.length,d:Date.now()});hist.length=Math.min(hist.length,30);try{localStorage.setItem('mhHist',JSON.stringify(hist))}catch(e){}play('end');if(window.speechSynthesis)speechSynthesis.cancel();
+app.innerHTML=`<p class="mut">Finished</p><h2 class="score">${score} of ${qs.length} correct</h2>${ticks()}<p>${p}% · longest streak ${best}</p><p>Time ${fmt(el)}${k==null?'':nb?' · new best time':' · best '+fmt(prev)}</p><div class="acts"><button class="next" id="again">Go again</button>${wrong.size?`<button class="link" id="rv2">Review missed (${wrong.size})</button>`:''}<button class="link" id="hm">Back to list</button></div>${miss.length?`<h2 class="lede" style="font-size:1.2rem">Missed this round</h2>${miss.map(([q,n])=>`<div class="rv"><b>${q[0]}</b><br>Your answer: ${q[n+1]}<br><em>Correct: ${q[q[5]+1]}</em></div>`).join('')}`:''}`;
+document.getElementById('again').onclick=()=>go(lastRev);document.getElementById('hm').onclick=home;const r2=document.getElementById('rv2');if(r2)r2.onclick=()=>go(true)}
+home();
+</script></body></html>
